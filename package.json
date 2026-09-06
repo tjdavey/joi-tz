@@ -1,6 +1,6 @@
 {
   "name": "joi-tz",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "description": "Timezone string validation for Joi 16.x or higher.",
   "keywords": [
     "joi",
