@@ -32,7 +32,7 @@
     "coverage": "jest --coverage",
     "lint": "eslint .",
     "clean": "rm -rf node_modules/ && rm -rf coverage",
-    "posttest": "npm run lint && npm run test:types",
+    "posttest": "npm run lint",
     "test:types": "node scripts/typecheck-consumers.js"
   },
   "author": "Tristan Davey <tristan@tristandavey.com>",

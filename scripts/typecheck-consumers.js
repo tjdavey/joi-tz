@@ -23,6 +23,9 @@ const TSCONFIGS = [
 // Files that consumers must find in the tarball for typed imports to work.
 const REQUIRED_FILES = ['package/lib/index.js', 'package/lib/index.d.ts']
 
+// joi only began shipping its own declarations in this version.
+const MINIMUM_TYPED_JOI = '17.2.0'
+
 function run (cmd, args, opts = {}) {
   return execFileSync(cmd, args, { encoding: 'utf8', stdio: 'pipe', ...opts })
 }
@@ -78,7 +81,24 @@ function smokeTest (workspace) {
   run(process.execPath, ['--input-type=module', '--eval', esm], { cwd: workspace })
 }
 
+// `npm test` runs tav, which reinstalls node_modules/joi once per supported
+// version and leaves the oldest behind. The type checks borrow that joi, so
+// they can only run against a tree npm ci owns.
+function assertTypedJoi () {
+  const joi = require(path.join(repoRoot, 'node_modules', 'joi', 'package.json'))
+  if (!joi.types && !joi.typings) {
+    console.error(
+      `node_modules/joi is ${joi.version}, which ships no type declarations ` +
+      `(joi added them in ${MINIMUM_TYPED_JOI}).\n` +
+      'Run `npm ci` first — `npm test` leaves an older joi behind.'
+    )
+    process.exit(1)
+  }
+}
+
 function main () {
+  assertTypedJoi()
+
   const workspace = fs.mkdtempSync(path.join(os.tmpdir(), 'joi-tz-consumer-'))
   const failures = []
 

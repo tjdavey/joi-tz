@@ -30,6 +30,20 @@ jobs:
       - name: Run Lint
         run: npm run lint
 
+  types:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+      - run: npm ci
+      # Deliberately not part of `npm test`: tav reinstalls node_modules/joi for
+      # every supported version, so the type checks need a tree npm ci owns.
+      - name: Run Consumer Type Checks
+        run: npm run test:types
+
   coverage:
     runs-on: ubuntu-latest
     steps:
