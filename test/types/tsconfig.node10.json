@@ -1,0 +1,4 @@
+{
+  "compilerOptions": { "module": "commonjs", "moduleResolution": "node10", "target": "es2022", "strict": true, "esModuleInterop": true, "skipLibCheck": true, "noEmit": true },
+  "files": ["cjs/consumer.ts", "cjs/consumer-require.ts"]
+}

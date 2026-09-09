@@ -11,9 +11,15 @@
     "validator",
     "luxor"
   ],
-  "exports": [
-    "./lib/index.js"
-  ],
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./package.json": "./package.json"
+  },
   "files": [
     "lib"
   ],
@@ -26,7 +32,8 @@
     "coverage": "jest --coverage",
     "lint": "eslint .",
     "clean": "rm -rf node_modules/ && rm -rf coverage",
-    "posttest": "npm run lint"
+    "posttest": "npm run lint && npm run test:types",
+    "test:types": "node scripts/typecheck-consumers.js"
   },
   "author": "Tristan Davey <tristan@tristandavey.com>",
   "contributors": [
@@ -41,6 +48,7 @@
     "joi": ">=16.1.8"
   },
   "devDependencies": {
+    "@types/node": "^26.5.0",
     "coveralls-next": "^6.0.1",
     "eslint": "^8.0.1",
     "eslint-config-standard": "^17.1.0",
@@ -49,6 +57,7 @@
     "eslint-plugin-n": "^16.6.2",
     "eslint-plugin-promise": "^6.6.0",
     "jest": "^30.5.1",
-    "test-all-versions": "^6.2.0"
+    "test-all-versions": "^6.2.0",
+    "typescript": "^5.9.3"
   }
 }

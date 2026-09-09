@@ -1,0 +1,4 @@
+{
+  "compilerOptions": { "module": "node16", "moduleResolution": "node16", "target": "es2022", "strict": true, "esModuleInterop": true, "skipLibCheck": true, "noEmit": true },
+  "files": ["esm/consumer.ts"]
+}

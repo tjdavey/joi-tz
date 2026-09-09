@@ -30,6 +30,10 @@ Joi.timezone().validate('Australia/Darwin');
 // returns {value: 'Australia/Darwin'}
 ```
 
+### TypeScript
+
+Type declarations are bundled with the package.
+
 ## Compatibility
 
 This library is tested for compatibility, and contains peer dependencies with the following versions. 
