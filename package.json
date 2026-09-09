@@ -9,7 +9,7 @@
     "tz",
     "validation",
     "validator",
-    "luxor"
+    "luxon"
   ],
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
